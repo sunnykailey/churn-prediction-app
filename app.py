@@ -37,6 +37,9 @@ input_df = pd.DataFrame([user_input])
 
 if st.button("Predict Churn"):
     prediction = model.predict(input_df)[0]
+    probability = model.predict_proba(input_df)[0][1] * 100
+
     st.subheader("Prediction:")
     st.write("❌ Will Churn" if prediction == 1 else "✅ Will Not Churn")
+    st.write(f"Churn Probability: {probability:.2f}%")
 
