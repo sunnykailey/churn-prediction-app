@@ -24,8 +24,14 @@ st.title("Customer Churn Predictor")
 st.write("Enter customer details:")
 
 user_input = {}
+
 for col in X.columns:
-    user_input[col] = st.number_input(col, value=0.0)
+    if col in encoders:  
+        options = encoders[col].classes_.tolist()
+        selected = st.selectbox(col, options)
+        user_input[col] = encoders[col].transform([selected])[0]
+    else:
+        user_input[col] = st.number_input(col, value=0.0)
 
 input_df = pd.DataFrame([user_input])
 
@@ -33,3 +39,4 @@ if st.button("Predict Churn"):
     prediction = model.predict(input_df)[0]
     st.subheader("Prediction:")
     st.write("❌ Will Churn" if prediction == 1 else "✅ Will Not Churn")
+
