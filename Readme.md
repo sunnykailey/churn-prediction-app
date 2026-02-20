@@ -1,3 +1,5 @@
+Live App link --> https://churn-prediction-app-zcjkswfa5scxuzkpe4qlnh.streamlit.app/
+
 Customer churn is a big problem for subscription-based companies like telecom, streaming platforms, and SaaS products.
 When customers are unhappy and leave, businesses lose money and trust.
 If companies can predict churn early, they can:
@@ -29,3 +31,4 @@ NOTE- for bulk Churn Prediction i downloaded Telco Customer Churn dataset from K
       https://www.kaggle.com/datasets/blastchar/telco-customer-churn
       download the dataset and before uploading remove the Churn column
       
+
