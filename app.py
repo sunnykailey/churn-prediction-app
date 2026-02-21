@@ -25,14 +25,16 @@ mode = st.radio("Select Prediction Mode:", ["Single Customer", "Bulk CSV Upload"
 if mode == "Single Customer":
     st.subheader("🔹 Single Customer Prediction")
 
+
     user_input = {}
+
     for col in X.columns:
         if col in encoders:
             options = encoders[col].classes_.tolist()
             selected = st.selectbox(col, options)
             user_input[col] = encoders[col].transform([selected])[0]
         else:
-           if col == "SeniorCitizen":
+            if col == "SeniorCitizen":
                 selected = st.selectbox("Senior Citizen", ["No", "Yes"])
                 user_input[col] = 1 if selected == "Yes" else 0
             else:
@@ -47,6 +49,7 @@ if mode == "Single Customer":
         st.subheader("Prediction:")
         st.write("❌ Will Churn" if prediction == 1 else "✅ Will Not Churn")
         st.write(f"Churn Probability: {probability:.2f}%")
+
 
 elif mode == "Bulk CSV Upload":
     st.subheader("📂 Bulk Customer Churn Prediction")
@@ -85,4 +88,3 @@ elif mode == "Bulk CSV Upload":
         st.metric("Total Customers", total)
         st.metric("Likely to Churn", churn_count)
         st.metric("Churn Rate", f"{(churn_count/total)*100:.2f}%")
-
